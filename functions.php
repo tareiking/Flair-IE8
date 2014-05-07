@@ -127,6 +127,18 @@ function flair_widgets_init() {
 add_action( 'widgets_init', 'flair_widgets_init' );
 
 /**
+ * Add some semblance of IE8 support
+ */
+function flair_ie_8() {
+	wp_enqueue_style( 'flair-no-rems', get_template_directory_uri() . '/css/no-rems.css' );
+	wp_style_add_data( 'flair-no-rems', 'conditional', 'lt IE 9' );
+
+	wp_enqueue_style( 'flair-ie', get_template_directory_uri() . '/css/ie8.css' );
+ 	wp_style_add_data( 'flair-ie', 'conditional', 'lt IE 9' );
+}
+add_action( 'wp_enqueue_scripts', 'flair_ie_8' );
+
+/**
  * Enqueue scripts and styles
  */
 function flair_scripts() {

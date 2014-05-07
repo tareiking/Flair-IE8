@@ -16,6 +16,16 @@ module.exports = function(grunt) {
 			}
 		}
 	},
+	pixrem: {
+		options: {
+			rootvalue: '85%',
+			replace  : true
+		},
+		dist: {
+			src : 'css/style.css',
+			dest: 'css/no-rems.css'
+		}
+	},	
 
 	watch: {
 	  grunt: { files: ['Gruntfile.js'] },
@@ -29,7 +39,8 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-pixrem');
 
-	grunt.registerTask('build', ['sass']);
+	grunt.registerTask('build', ['sass', 'pixrem']);
 	grunt.registerTask('default', ['build','watch']);
 }
